@@ -1,20 +1,36 @@
 <script setup>
 import HelloWorld from './components/HelloWorld.vue'
 import TheWelcome from './components/TheWelcome.vue'
+import { ElTag, ElButton } from 'element-plus'
+import { ref, reactive } from 'vue'
+
+  const haha=ref('姓名');
+  const hehe=ref('電話');
+
+  
+  let id=1;
+  const obj=ref([{id:id++,name:'eason',phone:123,dis:true}, 
+             {id:id++,name:'yoro',phone:123343,dis:true},
+             {id:id++,name:'nana',phone:45678,dis:true}])
+  
+  const insert=()=> {
+      obj.value.push({id:id++,name:haha.value,phone:hehe.value,dis:true})
+       haha.value='';
+       hehe.value='';
+  }
+  const deleteBtn=(v)=>{
+     v.dis=false
+  }
+  
 </script>
 
 <template>
-  <header>
-    <img alt="Vue logo" class="logo" src="./assets/logo.svg" width="125" height="125" />
 
-    <div class="wrapper">
-      <HelloWorld msg="You did itzzzz!" />
-    </div>
-  </header>
+  <input v-model="haha"> <input v-model="hehe"><button @click="insert">新插入一筆</button>
+  <ul v-for="v in obj"  v-show="v.dis">
+    <li>{{v.id}},{{v.name}},{{v.phone}}<button @click='deleteBtn(v)'>x</button></li>
+  </ul>
 
-  <main>
-    <TheWelcome />
-  </main>
 </template>
 
 <style scoped>
@@ -26,6 +42,10 @@ header {
   display: block;
   margin: 0 auto 2rem;
 }
+
+.try{
+    display:none
+  }
 
 @media (min-width: 1024px) {
   header {
@@ -43,5 +63,7 @@ header {
     place-items: flex-start;
     flex-wrap: wrap;
   }
+
+
 }
 </style>
