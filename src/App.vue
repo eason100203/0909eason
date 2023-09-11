@@ -33,7 +33,8 @@ import { ref, reactive, computed } from 'vue'
 
 <template>
 
-  <input type ="text" v-model="haha"> <input type ="text" v-model="hehe"><button @click="insert">新插入一筆</button>
+  <input type ="text" v-model="haha"> <input type ="text" v-model="hehe">
+  <p><button @click="insert">新插入一筆</button></p>
   <ul>
     <li v-for="va in showModel"  v-show="va.dis">
       <input type="checkbox" :checked='va.checked' 
